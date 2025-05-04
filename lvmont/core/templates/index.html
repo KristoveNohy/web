@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Domov{% endblock %}
 {% block links%}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
 {%endblock%}
 
 {% block content %}
@@ -11,24 +11,24 @@
 
     <div class="bg-container">
       <video autoplay muted loop playsinline id="hero-vid">
-        <source src="{{ url_for('static', filename='media/herovid.mp4') }}" type="video/mp4">
+        <source src="{% static 'media/herovid.mp4' %}" type="video/mp4">
       </video>
       <div class="overlay"></div>
     </div>
 
     <div class="hero-container">
       <div class="logo-container">
-        <img src="{{ url_for('static', filename='media/main.svg')}}" alt="" id="hero-logo">
+        <img src="{% static 'media/main.svg' %}" alt="" id="hero-logo">
       </div>
       <div class="hero-right">
         <h1>Váš Špecialista na Strechy vaších budov</h1>
         <div class="stars">
           <p>4.0 / 5.0</p>
-          <img src="{{ url_for('static', filename='media/star.svg')}}" alt="">
-          <img src="{{ url_for('static', filename='media/star.svg')}}" alt="">
-          <img src="{{ url_for('static', filename='media/star.svg')}}" alt="">
-          <img src="{{ url_for('static', filename='media/star.svg')}}" alt="">
-          <img src="{{ url_for('static', filename='media/star-grey.svg')}}" alt="">
+          <img src="{% static 'media/star.svg' %}" alt="">
+          <img src="{% static 'media/star.svg' %}" alt="">
+          <img src="{% static 'media/star.svg' %}" alt="">
+          <img src="{% static 'media/star.svg' %}" alt="">
+          <img src="{% static 'media/star-grey.svg' %}" alt="">
           <p>37 (hodnotení)</p>
         </div>
         <br>
