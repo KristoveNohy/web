@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Domov{% endblock %}
+{% block links%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+{%endblock%}
+
+{% block content %}
+  <section class="hero">
+
+    <div class="bg-container">
+      <video autoplay muted loop playsinline id="hero-vid">
+        <source src="{{ url_for('static', filename='media/herovid.mp4') }}" type="video/mp4">
+      </video>
+      <div class="overlay"></div>
+    </div>
+
+    <div class="hero-container">
+      <div class="logo-container">
+        <img src="{{ url_for('static', filename='media/main.svg')}}" alt="" id="hero-logo">
+      </div>
+      <div class="hero-right">
+        <h1>Váš Špecialista na Strechy vaších budov</h1>
+        <div class="stars">
+          <p>4.0 / 5.0</p>
+          <img src="{{ url_for('static', filename='media/star.svg')}}" alt="">
+          <img src="{{ url_for('static', filename='media/star.svg')}}" alt="">
+          <img src="{{ url_for('static', filename='media/star.svg')}}" alt="">
+          <img src="{{ url_for('static', filename='media/star.svg')}}" alt="">
+          <img src="{{ url_for('static', filename='media/star-grey.svg')}}" alt="">
+          <p>37 (hodnotení)</p>
+        </div>
+        <br>
+        <div class="act-container">
+          <a href="#" class="act act-sec">Zistiť viac</a>
+          <a href="#" class="act act-prim">kontakt</a>
+        </div>
+      </div>
+    </div>
+    
+    <hr>
+  </section>
+  <section class="motto-container">
+      <p>„<br><span id="motto">S láskou ku detailom</span><br>“</p>
+  </section>
+  
+  <section class="services">
+    <h2>Naše služby</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        {% for service in services %}
+        <div class="swiper-slide">
+          <img src="{{ service.image }}" alt="{{ service.title }}" style="width:100%; border-radius:12px; margin-bottom:10px;">
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.desc }}</p>
+          <a href="/service/{{ service.id }}" class="act act-prim" style="margin-top:10px; display:inline-block;">Viac informácií</a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </section>
+{% endblock %}
+
+
+
+
+
+
+
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    slidesPerView: 1,
+    spaceBetween: 30,
+    breakpoints: {
+      640: { slidesPerView: 1 },
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    },
+  });
+</script>
+ {% endblock%}

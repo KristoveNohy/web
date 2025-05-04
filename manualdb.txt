@@ -1,0 +1,64 @@
+Sure! Here’s the SQLite3 schema you need for this setup, broken into three tables:
+
+---
+
+### Table 1: `services`
+```sql
+CREATE TABLE services (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    subtitle TEXT,
+    details TEXT,
+    cover_image TEXT
+);
+```
+
+- **id**: unique identifier for the service
+- **title**: service title (e.g., Klampiarske práce)
+- **subtitle**: short subtitle or headline
+- **details**: detailed description
+- **cover_image**: filename or path for the main image (stored e.g., in `static/media/service_{id}/cover.jpg`)
+
+---
+
+### Table 2: `projects`
+```sql
+CREATE TABLE projects (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    service_id INTEGER,
+    details TEXT,
+    location TEXT,
+    media_folder TEXT,
+    FOREIGN KEY (service_id) REFERENCES services(id)
+);
+```
+
+- **id**: unique project ID
+- **service_id**: link to the service category this project belongs to
+- **details**: description of the project
+- **location**: where the project was done
+- **media_folder**: folder path like `static/media/{id}/` containing related images/videos
+
+---
+
+### Table 3: `reviews`
+```sql
+CREATE TABLE reviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    project_id INTEGER,
+    customer_name TEXT,
+    rating INTEGER CHECK(rating >= 0 AND rating <= 5),
+    review_text TEXT,
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+);
+```
+
+- **id**: unique review ID
+- **project_id**: the project the review is attached to
+- **customer_name**: name of the customer
+- **rating**: numeric rating (0 to 5)
+- **review_text**: the actual review
+
+---
+
+✅ Would you like me to write the Python script to initialize this database with these tables, or even provide example insert data?

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}LV Mont – Strechy{% endblock %}</title>
+  {% block links%}{%endblock%}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Domov</a></li>
+        <li><a href="#">Naše služby</a></li>
+        <li><a href="#">Galéria</a></li>
+        <li><a href="#">O nás</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- <footer>
+    <p>copyright Kristian Lančarič</p>
+  </footer> -->
+
+  {% block scripts %}{% endblock %}
+
+</body>
+</html>
