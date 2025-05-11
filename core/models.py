@@ -6,7 +6,7 @@ class Service(models.Model):
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=300, blank=True)
     details = models.TextField()
-    cover_image = models.ImageField(upload_to='services/')
+    image = models.ImageField(upload_to='static/services/')
 
 class Project(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)

@@ -2,10 +2,10 @@
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="718pt" height="551.8pt" viewBox="0 0 718.6 551.8" xmlns:bx="https://boxy-svg.com">
   <defs>
     <linearGradient gradientUnits="userSpaceOnUse" bx:pinned="true" id="color-0">
-      <stop style="stop-color: rgb(41, 43, 45);"/>
+      <stop style="stop-color: rgb(227, 173, 37);"/>
     </linearGradient>
     <linearGradient gradientUnits="userSpaceOnUse" bx:pinned="true" id="color-2">
-      <stop style="stop-color: rgb(50, 97, 166);"/>
+      <stop style="stop-color: rgb(36, 36, 36);"/>
     </linearGradient>
     <bx:export>
       <bx:file format="svg" href="#object-0" units="pt"/>

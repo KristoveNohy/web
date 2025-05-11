@@ -2,7 +2,6 @@
 {% load static %}
 {% block title %}Domov{% endblock %}
 {% block links%}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
 {%endblock%}
 
@@ -21,9 +20,8 @@
         <img src="{% static 'media/main.svg' %}" alt="" id="hero-logo">
       </div>
       <div class="hero-right">
-        <h1>Váš Špecialista na Strechy vaších budov</h1>
+        <h1>Váš Špecialista na strechy</h1>
         <div class="stars">
-          <p>4.0 / 5.0</p>
           <img src="{% static 'media/star.svg' %}" alt="">
           <img src="{% static 'media/star.svg' %}" alt="">
           <img src="{% static 'media/star.svg' %}" alt="">
@@ -46,21 +44,28 @@
   </section>
   
   <section class="services">
-    <h2>Naše služby</h2>
-    <div class="swiper">
-      <div class="swiper-wrapper">
+    <div>
+      <h1 class="section-header">Rozumné riešenia od našich <br> majstrov</h1>
+      <p class="section-paragraph">
+        Pozrite si aké služby poskytujeme
+      </p>
+      <nav class="sidebar-service">
         {% for service in services %}
-        <div class="swiper-slide">
-          <img src="{{ service.image }}" alt="{{ service.title }}" style="width:100%; border-radius:12px; margin-bottom:10px;">
-          <h3>{{ service.title }}</h3>
-          <p>{{ service.desc }}</p>
-          <a href="/service/{{ service.id }}" class="act act-prim" style="margin-top:10px; display:inline-block;">Viac informácií</a>
-        </div>
+          <div onmouseover="showContent('{{ service.id }}')" ontouchstart="showContent('{{ service.id }}')">
+            {{ service.title }}
+          </div>
         {% endfor %}
-      </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      </nav>
+    </div>
+
+    <div class="content-service">
+      {% for service in services %}
+          <div id="{{ service.id }}" class="content-box-service active">
+            <h2>{{ service.subtitle }}</h2>
+            <img src="{{ service.image }}" alt="{{ service.title }}">
+            <p>{{ service.details }}</p>
+          </div>
+      {% endfor %}
     </div>
   </section>
 {% endblock %}
@@ -75,17 +80,23 @@
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script>
-  const swiper = new Swiper('.swiper', {
-    loop: true,
-    pagination: { el: '.swiper-pagination', clickable: true },
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-    slidesPerView: 1,
-    spaceBetween: 30,
-    breakpoints: {
-      640: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-    },
+  function showContent(id) {
+      const boxes = document.querySelectorAll('.content-box-service');
+      boxes.forEach(box => box.classList.remove('active'));
+
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.add('active');
+      }
+    }
+</script>
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('nav ul');
+
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+    hamburger.classList.toggle('active');
   });
 </script>
  {% endblock%}
