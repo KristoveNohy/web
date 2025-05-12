@@ -2,101 +2,105 @@
 {% load static %}
 {% block title %}Domov{% endblock %}
 {% block links%}
-<link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{% static 'css/main.css'%}">
 {%endblock%}
 
 {% block content %}
+  <!-- Mobile sidebar -->
+  <div class="overlay" id="overlay"></div>
+  <div class="mobile-nav close" id="mobileNav">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    <ul>
+      <li><a href="#">Domov</a></li>
+      <li><a href="#">O nás</a></li>
+      <li><a href="#">Služby</a></li>
+      <li><a href="#realizacie">Realizácie</a></li>
+      <li><a href="#contact" class="btn btn-primary">Kontakt</a></li>
+    </ul>
+    <img src="{% static 'media/main.svg' %}" alt="logo" width="50%" style="margin: 25%;">
+  </div>
+
+  <!-- Hero sekcia -->
   <section class="hero">
-
-    <div class="bg-container">
-      <video autoplay muted loop playsinline id="hero-vid">
-        <source src="{% static 'media/herovid.mp4' %}" type="video/mp4">
-      </video>
-      <div class="overlay"></div>
-    </div>
-
-    <div class="hero-container">
-      <div class="logo-container">
-        <img src="{% static 'media/main.svg' %}" alt="" id="hero-logo">
+    <video autoplay muted loop class="hero-media">
+      <source src="{% static 'media/herovid.mp4' %}" type="video/mp4">
+      <img src="{% static 'media/roofbg.jpg' %}" alt="Hero background">
+    </video>
+    <div class="hero-content">
+      <img src="{% static 'media/main.svg' %}" alt="Logo" class="hero-logo">
+      <h1 class="hero-title">Posuňte svoje podnikanie vpred</h1>
+      <p class="hero-text">Inovatívne riešenia na mieru pre digitálnu éru 2025.</p>
+      <div class="reviews">
+        <div class="stars">★★★★☆</div>
+        <div class="count">(120+ recenzií)</div>
       </div>
-      <div class="hero-right">
-        <h1>Váš Špecialista na strechy</h1>
-        <div class="stars">
-          <img src="{% static 'media/star.svg' %}" alt="">
-          <img src="{% static 'media/star.svg' %}" alt="">
-          <img src="{% static 'media/star.svg' %}" alt="">
-          <img src="{% static 'media/star.svg' %}" alt="">
-          <img src="{% static 'media/star-grey.svg' %}" alt="">
-          <p>37 (hodnotení)</p>
-        </div>
-        <br>
-        <div class="act-container">
-          <a href="#" class="act act-sec">Zistiť viac</a>
-          <a href="#" class="act act-prim">kontakt</a>
-        </div>
+      <div class="buttons">
+        <a href="#contact" class="btn btn-secondary">Zistiť viac</a>
+        <a href="#contact" class="btn btn-primary">Kontakt</a>
       </div>
     </div>
-    
-    <hr>
   </section>
-  <section class="motto-container">
-      <p>„<br><span id="motto">S láskou ku detailom</span><br>“</p>
-  </section>
-  
+
+  <!-- Services sekcia -->
   <section class="services">
-    <div>
-      <h1 class="section-header">Rozumné riešenia od našich <br> majstrov</h1>
-      <p class="section-paragraph">
-        Pozrite si aké služby poskytujeme
-      </p>
-      <nav class="sidebar-service">
+    <div class="services-container">
+      <aside class="service-menu">
         {% for service in services %}
-          <div onmouseover="showContent('{{ service.id }}')" ontouchstart="showContent('{{ service.id }}')">
-            {{ service.title }}
-          </div>
+        <button data-target="service-{{ service.id }}" class="{% if forloop.first %}active{% endif %}" onmouseover="showContent('service-{{ service.id }}')" onclick="showContent('service-{{ service.id }}')">{{ service.title }}</button>
         {% endfor %}
-      </nav>
-    </div>
-
-    <div class="content-service">
-      {% for service in services %}
-          <div id="{{ service.id }}" class="content-box-service active">
-            <h2>{{ service.subtitle }}</h2>
-            <img src="{{ service.image }}" alt="{{ service.title }}">
-            <p>{{ service.details }}</p>
-          </div>
-      {% endfor %}
+      </aside>
+      <div class="service-content">
+        {% for service in services %}
+        <div id="service-{{ service.id }}" class="content-panel {% if forloop.first %}active{% endif %}">
+          <h2>{{ service.subtitle }}</h2>
+          <p>{{ service.details }}</p>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </section>
+
+  <!-- Realizácie sekcia -->
+  <section id="realizacie" class="realizacie">
+    <h2>Realizácie</h2>
+    <div class="swiper-container-realizacie swiper"> 
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="{% static 'media/roofbg.jpg' %}" alt="Realizácia 1"></div>
+        <div class="swiper-slide"><img src="{% static 'media/roofbg.jpg' %}" alt="Realizácia 2"></div>
+        <div class="swiper-slide"><img src="{% static 'media/roofbg.jpg' %}" alt="Realizácia 3"></div>
+        <div class="swiper-slide"><img src="{% static 'media/roofbg.jpg' %}" alt="Realizácia 4"></div>
+        <div class="swiper-slide show-more"><img src="{% static 'media/roofbg.jpg' %}" alt="Realizácia 5">
+          <div class="show-more-overlay"><a href="#">Zobraziť viac</a></div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <!-- Referencie sekcia -->
+<section id="referencie" class="referencie" style="padding:4rem 2rem;">
+    <h2 style="text-align:center; margin-bottom:2rem; font-size:2rem;">pozrite si čo hovorili naši klienti</h2>
+    <div class="swiper-container-referencie swiper" style="width:75%; ">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; padding:1rem;"><blockquote>"Výborná spolupráca, profesionálny prístup."<footer>– Klient A</footer></blockquote></div>
+        <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; padding:1rem;"><blockquote>"Projekt bol dokončený včas a nad očakávania."<footer>– Klient B</footer></blockquote></div>
+        <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; padding:1rem;"><blockquote>"Skvelá technická podpora a konzultácie."<footer>– Klient C</footer></blockquote></div>
+      </div>
+    </div>
+</section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 {% endblock %}
 
 
-
-
-
-
-
-
-{% block scripts %}
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<script>
-  function showContent(id) {
-      const boxes = document.querySelectorAll('.content-box-service');
-      boxes.forEach(box => box.classList.remove('active'));
-
-      const target = document.getElementById(id);
-      if (target) {
-        target.classList.add('active');
-      }
-    }
-</script>
-<script>
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.querySelector('nav ul');
-
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-    hamburger.classList.toggle('active');
-  });
-</script>
- {% endblock%}
+{% block scripts %}{% endblock%}

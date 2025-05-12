@@ -1,39 +1,183 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <title>{% block title %}LV Mont – Strechy{% endblock %}</title>
-  {% block links%}{%endblock%}
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LV Mont – Strechy | {% block title %}{% endblock %}</title>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="{% static 'css/base.css'%}">
+  {% block links %}
+
+  {% endblock %}
 </head>
 <body>
+    <div id="cookie-popup" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+">
+  <div style="
+    background: #1A1D21;
+    color: #F1F1F1;
+    padding: 2rem;
+    max-width: 400px;
+    border-radius: 8px;
+    text-align: center;
+  ">
+    <h3 style="margin-bottom: 1rem;">Súhlas so spracovaním osobných údajov</h3>
+    <p style="font-size: 0.9rem; line-height: 1.4; margin-bottom: 1.5rem;">
+      Táto stránka používa cookies na zlepšenie vášho zážitku a spracovanie osobných údajov
+      pre analytické a marketingové účely. Pokračovaním súhlasíte so spracovaním.
+    </p>
+    <button id="cookie-accept-btn" style="
+      background: #e63946;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    ">
+      Súhlasím
+    </button>
+  </div>
+</div>
+    
   <header>
-    <nav class="nav-container">
-        <ul>
-          <li><a href="#">Domov</a></li>
-          <li><a href="#">Naše služby</a></li>
-          <li><a href="#">Realizácie</a></li>
-          <li><a href="#">Referencie</a></li>
-          <li><a href="#">O nás</a></li>
-          <li><a href="#">Kontakt</a></li>
-        </ul>
-        <button class="hamburger" aria-label="Menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <a href="#contact" class="mobile-contact">Kontakt</a>
+    <nav>
+      <ul>
+        <li><a href="#">Domov</a></li>
+        <li><a href="#">O nás</a></li>
+        <li><a href="#">Služby</a></li>
+        <li><a href="#realizacie">Realizácie</a></li>
+        <li><a href="#contact" class="btn btn-primary">Kontakt</a></li>
+      </ul>
     </nav>
   </header>
+  <main style="flex:1;">
+{% block content %}{% endblock %}
+</main>
 
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+  <!-- Footer sekcia -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="{% static 'media/main.svg' %}" alt="Logo">
+      </div>
+      <ul class="footer-links">
+        <li><a href="#about">O nás</a></li>
+        <li><a href="#services">Služby</a></li>
+        <li><a href="#realizacie">Realizácie</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+        <li><a href="#privacy">Zásady ochrany osobných údajov</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://facebook.com" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--text-color)"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+        <a href="https://instagram.com" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--text-color)"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.5-.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>
+        </a>
+      </div>
+      <div class="footer-copy">&copy; 2025 Company Name</div>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // Mobilné menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('closeBtn');
+    function toggleMenu() {
+      const isOpen = mobileNav.classList.toggle('open');
+      mobileNav.classList.toggle('close', !isOpen);
+      overlay.classList.toggle('active', isOpen);
+      hamburger.classList.toggle('active', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+    closeBtn.addEventListener('click', toggleMenu);
 
-  <!-- <footer>
-    <p>copyright Kristian Lančarič</p>
-  </footer> -->
+    // Services showContent
+    function showContent(id) {
+      document.querySelectorAll('.service-menu button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
+      document.querySelector(`button[data-target=\"${id}\"]`).classList.add('active');
+      document.getElementById(id).classList.add('active');
+    }
 
-  {% block scripts %}{% endblock %}
+    // Inicializácia Swiper
+    new Swiper('.swiper-container-realizacie', {
+      slidesPerView: 1,
+      spaceBetween: 16,
+      loop: false,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
 
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    document.querySelectorAll('.swiper-container-realizacie .swiper-slide img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+    lightboxClose.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    // Inicializácia Referencie Swiper s autoplay a nekonečným loopom
+    new Swiper('.swiper-container-referencie', {
+      slidesPerView: 2,
+      spaceBetween: 16,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      allowTouchMove: false,
+    });
+  </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('cookie-popup');
+    const btn   = document.getElementById('cookie-accept-btn');
+    // ak už je uložený súhlas, skryjeme popup
+    if (localStorage.getItem('cookieConsent')) {
+      popup.style.display = 'none';
+      return;
+    }
+    // po kliknutí ulož súhlas a zavri popup
+    btn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'true');
+      popup.style.display = 'none';
+    });
+  });
+</script>
+
+  {% block scripts%}
+  {% endblock %}
 </body>
 </html>
