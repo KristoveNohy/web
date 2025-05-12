@@ -2,8 +2,8 @@
 :root {
   --bg-color: #0D0F12;
   --menu-bg: #1A1D21;
-  --accent: #007AFF;
-  --accent-hover: #0051C7;
+  --accent: #ff0000;
+  --accent-hover: #c70000;
   --text-color: #F1F1F1;
   --subtext: #B0B0B0;
   --overlay: rgba(0, 0, 0, 0.6);
@@ -59,9 +59,20 @@ footer {
   gap: 1.5rem;
 }
 .footer-logo img {
-  height: 40px;
+  width: 5em;
   filter: brightness(1.2);
 }
+
+.footer-logo a {
+  color: white;
+  text-decoration: none;
+  transition: transform 200ms ease;
+}
+.footer-logo a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
 .footer-links {
   display: flex;
   flex-wrap: wrap;
