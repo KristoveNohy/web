@@ -4,6 +4,7 @@
   --menu-bg: #1A1D21;
   --accent: #ff0000;
   --accent-hover: #c70000;
+  --swiper-theme-color: var(--accent);
   --text-color: #F1F1F1;
   --subtext: #B0B0B0;
   --overlay: rgba(0, 0, 0, 0.6);
@@ -39,7 +40,6 @@ nav a:hover::after { width: 100%; }
 .btn-secondary { border: #fff solid 0.1em; color: #fff; padding: 0.5rem 1.5rem; border-radius: 999px; font-weight: 600; transition: background 0.3s, transform 0.2s; }
 .btn-secondary:hover { background: var(--accent-hover); transform: translateY(-2px); border-color: var(--accent);}
 .mobile-contact { display: none; margin-left: auto; color: var(--accent); text-decoration: none; font-weight: 600; }
-
 /* Footer sekcia */
 footer {
   width: 100%;
@@ -173,3 +173,20 @@ footer {
   .footer-links {
     justify-content: center;
   }
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  nav { display: none; }
+  .mobile-contact { display: block; }
+}
+    /* Mobile sidebar & overlay */
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); opacity: 0; visibility: hidden; transition: opacity 0.3s; z-index: 1000; }
+.overlay.active { opacity: 1; visibility: visible; }
+.mobile-nav { position: fixed; top: 0; left: 0; width: 260px; height: 100%; background: var(--menu-bg); padding-top: 4rem; transform: translateX(-100%); box-shadow: 2px 0 12px rgba(0,0,0,0.4); border-top-right-radius: 8px; border-bottom-right-radius: 8px; z-index: 1001; }
+.mobile-nav.open { transform: translateX(0); transition: transform 0.3s ease-out; }
+.mobile-nav.close { transform: translateX(-100%); transition: transform 0.3s ease-in; }
+.mobile-nav .close-btn { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-color); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+.mobile-nav .close-btn:hover { color: var(--accent); }
+.mobile-nav ul { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; padding: 0 1.5rem; }
+.mobile-nav a { color: var(--text-color); text-decoration: none; font-size: 1.1rem; font-weight: 500; }
+.mobile-nav a.btn-primary { display: block; text-align: center; }

@@ -2,13 +2,50 @@
 {% load static %}
 {% block title %}O Nás{% endblock %}
 {% block links %}
-
+<link rel="stylesheet" href="{% static 'css/about.css'%}">
 {% endblock %}
 
 {% block content %}
-
+<div class="container">
+    <section>
+      <h1>Kto sme</h1>
+      <p>Sme tím skúsených remeselníkov, ktorí sa špecializujú na kompletné strešné riešenia, od výroby a montáže krovov, cez klampiarske a pokrývačské práce, až po montáž strešných okien, odvetraných fasád a hydroizolácií.</p>
+    </section>
+    <section class="priorities">
+        <h2>Naše hodnoty</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>🛠️ Precíznosť</h3>
+          <p>Každý detail je montovaný s dôrazom na presnosť a kvalitu.</p>
+        </div>
+        <div class="card">
+          <h3>🤝 Zodpovednosť</h3>
+          <p>Dodržiavame termíny, rozpočty a dohody bez kompromisov.</p>
+        </div>
+        <div class="card">
+          <h3>📞 Komunikácia</h3>
+          <p>Vždy máte prehľad o postupe prác, poradíme a navrhneme riešenia.</p>
+        </div>
+        <div class="card">
+          <h3>🌱 Trvácnosť</h3>
+          <p>Pracujeme s materiálmi s dlhoročnou životnosťou a odolnosťou.</p>
+        </div>
+    </section>
+    <section>
+      <h2>Prečo si vybrať nás</h2>
+      <ul>
+        <li>Individuálny prístup ku každému projektu</li>
+        <li>Transparentné cenové ponuky</li>
+        <li>Komplexná realizácia bez potreby ďalších dodávateľov</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Povedzte nám o svojom projekte</h2>
+      <p>Máte záujem o novú strechu, rekonštrukciu, altánok alebo fasádu? Ozvite sa nám a pripravíme vám nezáväznú cenovú ponuku.</p>
+      <a href="{% url 'contact' %}" class="btn-primary" style="text-decoration: none; display: inline-block; margin-top: 1rem;">Kontaktujte nás</a>
+    </section>
+</div>
 {% endblock %}
-
 {% block scripts %}
 
 {% endblock %}

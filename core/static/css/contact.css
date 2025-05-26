@@ -1,0 +1,167 @@
+/* From Uiverse.io by micaelgomestavares */ 
+.container {
+    margin-top: 4rem;
+    margin-inline: auto;
+    max-width: 800px;
+    border-radius: 20px;
+    background-color: var(--menu-bg);
+    padding: 20px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+  background-color: var(--menu-bg);
+  border-radius: 20px;
+  position: relative;
+}
+
+.title {
+  font-size: 28px;
+  color: var(--text-color);
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.title::before,.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: var(--accent);
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: var(--accent);
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.message, .signin {
+  color: var(--subtext);
+  font-size: 14px;
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a {
+  color: var(--accent);
+}
+
+.signin a:hover {
+  text-decoration: underline var(--accent-hover);
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.form label {
+  position: relative;
+}
+
+.form label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.form label .input:focus + span,.form label .input:valid + span {
+  top: 0px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.form label .input:valid + span {
+  color: green;
+}
+
+button.submit {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button.submit:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+input, select, textarea {
+      margin-top: 0.4rem;
+      border: 1px solid #555;
+      background: #20242b;
+      color: var(--text-color);
+    }
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.alt-contact {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: var(--subtext);
+      text-align: center;
+    }
+.alt-contact a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+.alt-contact a:hover {
+  text-decoration: underline;
+}
+.hero-text { font-size: 1.25rem; color: var(--subtext); margin-bottom: 1.5rem; }
+
+
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}

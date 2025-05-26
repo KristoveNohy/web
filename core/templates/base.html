@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LV Mont – Strechy | {% block title %}{% endblock %}</title>
+  <title>LF Strechy | {% block title %}{% endblock %}</title>
   <!-- Swiper CSS -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="{% static 'css/base.css'%}">
   {% block links %}
 
@@ -51,18 +52,31 @@
     
   <header>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-    <a href="#contact" class="mobile-contact">Kontakt</a>
+    <a href="{% url 'contact' %}" class="mobile-contact">Kontakt</a>
     <nav>
       <ul>
-        <li><a href="#">Domov</a></li>
-        <li><a href="#">O nás</a></li>
-        <li><a href="#">Služby</a></li>
-        <li><a href="#realizacie">Realizácie</a></li>
+        <li><a href="{% url 'index' %}">Domov</a></li>
+      <li><a href="{% url 'about' %}">O nás</a></li>
+        <li><a href="{% url 'index' %}#sluzby">Služby</a></li>
+        <li><a href="{% url 'implementation' %}">Realizácie</a></li>
         <li><a href="#referencie">Referencie</a></li>
-        <li><a href="#contact" class="btn btn-primary">Kontakt</a></li>
+        <li><a href="{% url 'contact' %}" class="btn btn-primary">Kontakt</a></li>
       </ul>
     </nav>
   </header>
+    <!-- Mobile sidebar -->
+  <div class="overlay" id="overlay"></div>
+  <div class="mobile-nav close" id="mobileNav">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    <ul>
+      <li><a href="{% url 'index' %}">Domov</a></li>
+      <li><a href="{% url 'about' %}">O nás</a></li>
+      <li><a href="#">Služby</a></li>
+      <li><a href="#realizacie">Realizácie</a></li>
+      <li><a href="{% url 'contact' %}" class="btn btn-primary">Kontakt</a></li>
+    </ul>
+    <img src="{% static 'media/logo.svg' %}" alt="logo" width="50%" style="margin: 25%;">
+  </div>
   <main style="flex:1;">
 {% block content %}{% endblock %}
 </main>
@@ -76,21 +90,18 @@
         <a href="mailto:info@firma.sk" class="contact-block__info-item" aria-label="Email"> info@firma.sk</a>
       </div>
       <ul class="footer-links">
-        <li><a href="#about">O nás</a></li>
-        <li><a href="#services">Služby</a></li>
+        <li><a href="{% url 'about' %}">O nás</a></li>
+        <li><a href="#sluzby">Služby</a></li>
         <li><a href="#realizacie">Realizácie</a></li>
-        <li><a href="#contact">Kontakt</a></li>
+        <li><a href="{% url 'contact' %}">Kontakt</a></li>
         <li><a href="#privacy">Zásady ochrany osobných údajov</a></li>
       </ul>
       <div class="footer-social">
-        <a href="https://facebook.com" aria-label="Facebook">
+        <a href="https://www.facebook.com/profile.php?id=61573216465987" aria-label="Facebook">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--text-color)"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/></svg>
         </a>
-        <a href="https://instagram.com" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--text-color)"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.5-.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>
-        </a>
       </div>
-      <div class="footer-copy">&copy; 2025 LF Mont - Strechy</div>
+      <div class="footer-copy">&copy; 2025 LF Strechy</div>
     </div>
   </footer>
   

@@ -2,11 +2,78 @@
 {% load static %}
 {% block title %}Kontakt{% endblock %}
 {% block links %}
-
+<link rel="stylesheet" href="{% static 'css/contact.css'%}">
+<link rel="stylesheet" href="{% static 'css/main.css'%}">
 {% endblock %}
 
 {% block content %}
+<!-- From Uiverse.io by micaelgomestavares --> 
+ <div class="container">
+<form class="form" for="{% url 'contact' %}" method="post">
+    {% csrf_token %}
+    <p class="title">Kontaktný formulár </p>
+    <p class="message">napíšte nám a my vám pomôžeme vyriešiť váš problém </p>
+        <div class="flex">
+        <label>
+            <input class="input" type="text" placeholder="" required name="fname" id="fname">
+            <span>Meno</span>
+        </label>
 
+        <label>
+            <input class="input" type="text" placeholder="" required name="lname" id="lname">
+            <span>Priezvisko</span>
+        </label>
+    </div>  
+            
+    <label>
+        <input class="input" type="email" placeholder="" required name="email" id="email">
+        <span>Email</span>
+    </label> 
+    <label>
+        <input class="input" type="text" placeholder="" required name="adress" id="adress">
+        <span>Adresa</span>
+    </label> 
+        
+    <label>
+        <input class="input" type="tel" placeholder="" required name="phone" id="phone" minlength="13">
+        <span>Telefónne číslo</span>
+    </label>
+    <label>
+        <select class="input" style="padding-block: 15px 15px;" name="category" id="category">
+            <option value="" selected disabled>Kategoria</option>
+            {% for service in services %}
+            <option value="{{ service.id }}" {% if select == service.id %} selected {% endif %}>{{ service.title }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>
+        <textarea class="input" placeholder="" required name="details" id="details"></textarea>
+        <span>Detaily</span>
+    </label>
+    
+    <button class="submit">Odoslať</button>
+</form>
+    <div class="alt-contact">
+      <p>Preferujete priamy kontakt? Zavolajte nám na <a href="tel:+421948337362">+421 948 337 362</a> alebo napíšte na <a href="https://www.facebook.com/profile.php?id=61573216465987">Facebook</a></p>
+    </div>
+</div>
+
+<section id="referencie" class="referencie" style="padding:4rem 2rem; max-width: 1200px; margin-inline: auto;">
+  <h1>Naše referencie</h1>
+    <p class="hero-text">Pozrite si čo hovorili naši klienti</p>
+    <div class="swiper-container-referencie swiper" style="width:90%; ">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; padding:1rem;"><blockquote>"Výborná spolupráca, profesionálny prístup."<footer>– Klient A</footer></blockquote></div>
+        <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; padding:1rem;"><blockquote>"Projekt bol dokončený včas a nad očakávania."<footer>– Klient B</footer></blockquote></div>
+        <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; padding:1rem;"><blockquote>"Skvelá technická podpora a konzultácie."<footer>– Klient C</footer></blockquote></div>
+      </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
 {% endblock %}
 
 {% block scripts %}
