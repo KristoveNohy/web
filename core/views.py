@@ -7,13 +7,28 @@ def index(request):
 
     return render(request, "index.html", {
         "services": Service.objects.all(),
-        "references": Realization.objects.all(),
     })
 
 def about(request):
     return render(request, 'about.html',)
+def realizations(request):
+    return render(request, 'realizations.html', {
+        'categories': Category.objects.all()
+    })
+
+def upload(request):
+    if request.method == "POST":
+        files = request.FILES.getlist('images[]')
+        print(files)
+        for file in files:
+            Image.objects.create(category=Category.objects.get(id=request.POST["category"]), images=file)
+        return redirect('realizations')
+    return render(request, 'create.html', {
+        'category': Category.objects.all()
+    })
 
 def contact(request):
+
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -47,5 +62,4 @@ def contact(request):
         return render(request, 'contact.html', {
             'select': serviceid,
             'services': Service.objects.all(),
-            "references": Realization.objects.all(),
         })

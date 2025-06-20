@@ -13,6 +13,31 @@
   --star-color: #FFD60A;
   --font-sans: 'Inter', system-ui, -apple-system;
 }
+#preloader {
+  position: fixed;
+  z-index: 9999;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #3992e6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   display: flex;
@@ -41,7 +66,7 @@ nav a:hover::after { width: 100%; }
 .btn-secondary:hover { background: var(--accent-hover); transform: translateY(-2px); border-color: var(--accent);}
 .mobile-contact { display: none; margin-left: auto; color: var(--accent); text-decoration: none; font-weight: 600; }
 /* Footer sekcia */
-footer {
+body > footer {
   width: 100%;
   margin-top: 4rem;
   position: relative;
@@ -173,6 +198,21 @@ footer {
   .footer-links {
     justify-content: center;
   }
+section {max-width: 1200px; margin-inline: auto;}
+section > h1 {margin-bottom: 0; line-height: 0.5em;}
+.hero-text { font-size: 1.25rem; color: var(--subtext); margin-bottom: 1.5rem; }
+.realizacie { padding: 4rem 2rem; }
+.realizacie h2 { text-align: left; margin-bottom: 2rem; font-size: 2rem; }
+.swiper-container-realizacie { width: 100%; padding-bottom: 2rem; }
+.swiper-slide { position: relative; text-align: center; background: var(--menu-bg); border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; aspect-ratio: 4/3; }
+.swiper-slide img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+.show-more-overlay { position: absolute; inset: 0; background: var(--overlay-light); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+.show-more-overlay a { color: #fff; background: var(--accent); padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-weight: 600; }
+.swiper-slide.show-more .show-more-overlay { opacity: 1; }
+/* Lightbox */
+.lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay-dark); display: none; align-items: center; justify-content: center; z-index: 2000; }
+.lightbox-img { max-width: 90%; max-height: 90%; }
+.lightbox-close { position: absolute; top: 1rem; right: 1rem; color: #fff; font-size: 2rem; cursor: pointer; }
 
 @media (max-width: 768px) {
   .hamburger { display: flex; }

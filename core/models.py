@@ -8,18 +8,16 @@ class Service(models.Model):
     details = models.TextField()
     image = models.ImageField(upload_to='static/services/', blank=True, null=True)
 
-class Realization(models.Model):
-    category = models.ForeignKey(Service, on_delete=models.CASCADE)
-    details = models.TextField()
-    location = models.CharField(max_length=300)
-    before_image = models.ImageField(upload_to='static/Realization/', blank=True, null=True)
-    after_image = models.ImageField(upload_to='static/Realization/')
+class Category(models.Model):
+    name = models.CharField(max_length=32)
 
-class Review(models.Model):
-    project = models.ForeignKey(Realization, on_delete=models.CASCADE)
-    customer_name = models.CharField(max_length=200)
-    rating = models.IntegerField()
-    review_text = models.TextField()
+    def __str__(self):
+        return self.name
+
+
+class Image(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="images")
+    images = models.ImageField(upload_to="static/uploads/")
 
 class Customer(models.Model):
     fname = models.CharField(max_length=64)

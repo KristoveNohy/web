@@ -9,9 +9,9 @@
   <!-- Hero sekcia -->
   <div class="hero">
     <video autoplay muted loop class="hero-media">
-      <source src="{% static 'media/herovid.mp4' %}" type="video/mp4">
-      <img src="{% static 'media/roofbg.jpg' %}" alt="Hero background">
+      <!-- <source src="{% static 'media/herovid.mp4' %}" type="video/mp4"> -->
     </video>
+    <img class="hero-media" src="{% static 'media/herophoto.jpg' %}" alt="Hero background">
     <div class="hero-content">
       <img src="{% static 'media/logo.svg' %}" alt="Logo" class="hero-logo">
       <h1 class="hero-title">Získajte bezplatnú obhliadku strechy</h1>
@@ -84,23 +84,6 @@
   </section>
 
   <!-- Referencie sekcia -->
-<section id="referencie" class="referencie" style="padding:4rem 2rem; max-width: 1200px; margin-inline: auto;">
-  <h1>Naše referencie</h1>
-    <p class="hero-text">Pozrite si čo hovorili naši klienti</p>
-    <div class="swiper-container-referencie swiper" style="width:90%; ">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; padding:1rem;"><blockquote>"Výborná spolupráca, profesionálny prístup."<footer>– Klient A</footer></blockquote></div>
-        <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; padding:1rem;"><blockquote>"Projekt bol dokončený včas a nad očakávania."<footer>– Klient B</footer></blockquote></div>
-        <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; padding:1rem;"><blockquote>"Skvelá technická podpora a konzultácie."<footer>– Klient C</footer></blockquote></div>
-      </div>
-    </div>
-</section>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <span class="lightbox-close" id="lightboxClose">&times;</span>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="">
-  </div>
 
 
 {% endblock %}

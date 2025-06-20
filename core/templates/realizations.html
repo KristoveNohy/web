@@ -8,7 +8,28 @@
 
 
 {% block content %}
-
+ <section id="realizacie" class="realizacie">
+    <h1 style="margin-bottom: 1em;">Pozrite si naše dokončené projekty</h1>
+    {% for category in categories %}
+    {% if category.images.all %}
+    <div class="swiper-container-realizacie swiper"> 
+        <h3>
+            {{ category }}
+        </h3>
+      <div class="swiper-wrapper">
+        
+        {% for image in category.images.all %}
+            <div class="swiper-slide"><img src="{{ image.images }}" loading="lazy" ></div>
+        {% endfor %}
+        
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+  </section>
 {% endblock %}
 
 

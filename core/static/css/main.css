@@ -4,7 +4,6 @@
 .hero-content { position: relative; z-index: 2; max-width: 800px; margin: auto; color: var(--text-color); }
 .hero-logo { width: 200px; margin-bottom: 1rem; filter: brightness(1.2); }
 .hero-title { font-size: 3rem; font-weight: 700; margin-bottom: 0.75rem; }
-.hero-text { font-size: 1.25rem; color: var(--subtext); margin-bottom: 1.5rem; }
 .reviews { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; }
 .stars { display: flex; gap: 0.25rem; font-size: 1.5rem; }
 .stars > svg {
@@ -32,8 +31,6 @@
 .buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;}
 .btn {text-decoration: none;}
 /* Services sekcia */
-section {max-width: 1200px; margin-inline: auto;}
-section > h1 {margin-bottom: 0; line-height: 0.5em;}
 .service-header {max-width: 1200px; margin-inline: auto; margin-block: 0 2em;}
 .services { padding: 4rem 2rem; }
 .services-container { display: flex; gap: 2rem; max-width: 1200px; margin: auto; }
@@ -44,18 +41,7 @@ section > h1 {margin-bottom: 0; line-height: 0.5em;}
 .content-panel { display: none; }
 .content-panel.active { display: block; }
 /* Realizácie sekcia */
-.realizacie { padding: 4rem 2rem; }
-.realizacie h2 { text-align: left; margin-bottom: 2rem; font-size: 2rem; }
-.swiper-container-realizacie { width: 100%; padding-bottom: 2rem; }
-.swiper-slide { position: relative; text-align: center; background: var(--menu-bg); border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; aspect-ratio: 4/3; }
-.swiper-slide img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
-.show-more-overlay { position: absolute; inset: 0; background: var(--overlay-light); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
-.show-more-overlay a { color: #fff; background: var(--accent); padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-weight: 600; }
-.swiper-slide.show-more .show-more-overlay { opacity: 1; }
-/* Lightbox */
-.lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay-dark); display: none; align-items: center; justify-content: center; z-index: 2000; }
-.lightbox-img { max-width: 90%; max-height: 90%; }
-.lightbox-close { position: absolute; top: 1rem; right: 1rem; color: #fff; font-size: 2rem; cursor: pointer; }
+
 /* Responsive pre sekcie */
 
 @media (max-width: 768px) {
