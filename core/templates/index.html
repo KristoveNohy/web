@@ -70,19 +70,22 @@
     <p class="hero-text">Naše najnovšie dokončené projekty</p>
     <div class="swiper-container-realizacie swiper"> 
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="{% static 'media/roofbg.jpg' %}" alt="Realizácia 1"></div>
-        <div class="swiper-slide"><img src="{% static 'media/roofbg.jpg' %}" alt="Realizácia 2"></div>
-        <div class="swiper-slide"><img src="{% static 'media/roofbg.jpg' %}" alt="Realizácia 3"></div>
-        <div class="swiper-slide"><img src="{% static 'media/roofbg.jpg' %}" alt="Realizácia 4"></div>
-        <div class="swiper-slide show-more"><img src="{% static 'media/roofbg.jpg' %}" alt="Realizácia 5">
-          <div class="show-more-overlay"><a href="#">Zobraziť viac</a></div>
-        </div>
+        {% for image in images %}
+        {% if forloop.last %}
+          <div class="swiper-slide show-more"><img src="{{ image.images }}" alt="Realizácia 5">
+            <div class="show-more-overlay"><a href="#">Zobraziť viac</a></div>
+          </div>
+        {% else %}
+          <div class="swiper-slide"><img src="{{ image.images }}" alt="image.category"></div>                    
+        {% endif %}
+        {% endfor %}
+        
+        
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
     </div>
   </section>
-
   <!-- Referencie sekcia -->
 
 

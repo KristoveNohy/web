@@ -7,6 +7,7 @@ def index(request):
 
     return render(request, "index.html", {
         "services": Service.objects.all(),
+        "images": Image.objects.all()[:5],
     })
 
 def about(request):
