@@ -1,6 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
-from .forms import *
+
+from django.core.mail import send_mail, EmailMessage
+from django.conf import settings
+from .forms import ContactForm
+
 
 # Create your views here.
 def index(request):
@@ -12,6 +16,9 @@ def index(request):
 
 def about(request):
     return render(request, 'about.html',)
+
+def thanks(request):
+    return render(request, 'thanks.html',)
 def realizations(request):
     return render(request, 'realizations.html', {
         'categories': Category.objects.all()
@@ -31,26 +38,52 @@ def upload(request):
 def contact(request):
 
     if request.method == "POST":
-        form = ContactForm(request.POST)
+        form = ContactForm(request.POST, request.FILES)
+        print(request.FILES)
         if form.is_valid():
             customer = Customer.objects.create(
                 fname=form.cleaned_data['fname'],
                 lname=form.cleaned_data['lname'],
-                adress=form.cleaned_data['adress'],
+                address=form.cleaned_data['address'],
                 email=form.cleaned_data['email'],
                 phone=form.cleaned_data['phone'],
                 category=form.cleaned_data['category'],
                 details=form.cleaned_data['details']
             )
-            # tu môžeš napr. logovať zákazníkovu žiadosť o službu
-            # alebo vytvoriť nový model Request(customer=..., service=..., details=...)
-            print(f"{customer.fname} si vyžiadal službu {form.cleaned_data['category'].title}")
-            return HttpResponse(f"{customer.fname} si vyžiadal službu {form.cleaned_data['category'].title}")
+            # 1. Email firme (kópia správy)
+            email = EmailMessage(
+                subject=f'Nová správa z kontaktného formulára od {customer.fname} {customer.lname}',
+                body=f"{customer.details}\n {customer.email}\n {customer.phone}",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=['lfstrechy@gmail.com'],
+            )
+            for f in request.FILES.getlist('attachment'):
+                email.attach(f.name, f.read(), f.content_type)
+            email.send(fail_silently=False)
+
+            # 2. Potvrdenie uchádzačovi
+            confirm_message = (
+                f"Dobrý deň {customer.fname} {customer.lname},\n\n"
+                "ďakujeme za vašu správu. Bola úspešne zaevidovaná.\n"
+                "Budeme vás čo najskôr kontaktovať.\n\n"
+                "S pozdravom,\n Lukáš Vaško \n +421 948 337 362\n lfstrechy@gmail.com"
+            )
+            send_mail(
+                subject='Vaša správa bola prijatá',
+                message=confirm_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[customer.email],
+                fail_silently=False,
+            )
+
+            # 3. Presmerovanie na ďakovnú stránku
+            return render(request, 'thanks.html')
+
         else:
-            print("chyba")
             return HttpResponse("chyba")
+        
+
     else:
-        form = ContactForm()
 
         serviceid = request.GET.get('serviceid')
 

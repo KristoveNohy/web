@@ -22,10 +22,10 @@ class Image(models.Model):
 class Customer(models.Model):
     fname = models.CharField(max_length=64)
     lname = models.CharField(max_length=64)
-    adress = models.CharField(max_length=64)
+    address = models.CharField(max_length=64)
 
     email = models.EmailField()
-    phone = models.CharField(max_length=13)
+    phone = models.CharField(max_length=16)
 
     category = models.ForeignKey(Service, on_delete=models.CASCADE)
     details = models.TextField()

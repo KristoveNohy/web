@@ -9,7 +9,7 @@
 {% block content %}
 <!-- From Uiverse.io by micaelgomestavares --> 
  <div class="container">
-<form class="form" for="{% url 'contact' %}" method="post">
+<form class="form" action="{% url 'contact' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <p class="title">Kontaktný formulár </p>
     <p class="message">napíšte nám a my vám pomôžeme vyriešiť váš problém </p>
@@ -30,13 +30,14 @@
         <span>Email</span>
     </label> 
     <label>
-        <input class="input" type="text" placeholder="" required name="adress" id="adress">
+        <input class="input" type="text" placeholder="" required name="address" id="address">
         <span>Adresa</span>
     </label> 
         
     <label>
-        <input class="input" type="tel" placeholder="" required name="phone" id="phone" minlength="13">
+        <input class="input" type="tel" placeholder="" required name="phone" id="phone" pattern="[0-9]{4} [0-9]{3} [0-9]{3}">
         <span>Telefónne číslo</span>
+        <small style="font-size: 0.75em; color: darkgrey;"><i>vo forme: 0901 234 567</i></small>
     </label>
     <label>
         <select class="input" style="padding-block: 15px 15px;" name="category" id="category">
@@ -50,6 +51,12 @@
         <textarea class="input" placeholder="" required name="details" id="details"></textarea>
         <span>Detaily</span>
     </label>
+
+    <label for="attachment" class="file-upload-label">
+        <span>Príloha</span>
+        <input type="file" name="attachment" id="attachment" accept="image/png, image/jpeg" class="file-upload-input">
+    </label>
+
     
     <button class="submit">Odoslať</button>
 </form>

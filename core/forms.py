@@ -6,3 +6,5 @@ class ContactForm(forms.ModelForm):
         model = Customer
         fields = "__all__"
     
+    attachment = forms.FileField(required=False,)
+    
