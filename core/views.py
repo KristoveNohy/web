@@ -40,6 +40,7 @@ def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST, request.FILES)
         print(request.FILES)
+        print(form.is_valid())
         if form.is_valid():
             customer = Customer.objects.create(
                 fname=form.cleaned_data['fname'],
@@ -80,6 +81,7 @@ def contact(request):
             return render(request, 'thanks.html')
 
         else:
+            print(form.errors)
             return HttpResponse("chyba")
         
 

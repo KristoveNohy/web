@@ -9,7 +9,7 @@
 {% block content %}
 <!-- From Uiverse.io by micaelgomestavares --> 
  <div class="container">
-<form class="form" action="{% url 'contact' %}" method="post" enctype="multipart/form-data">
+<form class="form" action="{% url 'contact' %}" method="post" enctype="multipart/form-data" onsubmit="wait()">
     {% csrf_token %}
     <p class="title">Kontaktný formulár </p>
     <p class="message">napíšte nám a my vám pomôžeme vyriešiť váš problém </p>
@@ -40,7 +40,7 @@
         <small style="font-size: 0.75em; color: darkgrey;"><i>vo forme: 0901 234 567</i></small>
     </label>
     <label>
-        <select class="input" style="padding-block: 15px 15px;" name="category" id="category">
+        <select class="input" style="padding-block: 15px 15px;" name="category" id="category" required>
             <option value="" selected disabled>Kategoria</option>
             {% for service in services %}
             <option value="{{ service.id }}" {% if select == service.id %} selected {% endif %}>{{ service.title }}</option>
@@ -58,7 +58,7 @@
     </label>
 
     
-    <button class="submit">Odoslať</button>
+    <button class="submit" id="submitbtn">Odoslať</button>
 </form>
     <div class="alt-contact">
       <p>Preferujete priamy kontakt? Zavolajte nám na <a href="tel:+421948337362">+421 948 337 362</a> alebo napíšte na <a href="https://www.facebook.com/profile.php?id=61573216465987">Facebook</a></p>
@@ -67,5 +67,15 @@
 {% endblock %}
 
 {% block scripts %}
+<script>
+    function wait() {
+    const btn = document.getElementById("submitbtn");
+    btn.innerText = "odosielam...";
+    btn.disabled = true;
+    btn.style.backgroundColor = '#8a6969'
+    btn.style.color = '#aaa'
+}
+
+</script>
 
 {% endblock %}

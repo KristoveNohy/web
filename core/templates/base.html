@@ -13,42 +13,6 @@
   {% endblock %}
 </head>
 <body>
-    <div id="cookie-popup" style="
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3000;
-">
-  <div style="
-    background: #1A1D21;
-    color: #F1F1F1;
-    padding: 2rem;
-    max-width: 400px;
-    border-radius: 8px;
-    text-align: center;
-  ">
-    <h3 style="margin-bottom: 1rem;">Súhlas so spracovaním osobných údajov</h3>
-    <p style="font-size: 0.9rem; line-height: 1.4; margin-bottom: 1.5rem;">
-      Táto stránka používa cookies na zlepšenie vášho zážitku a spracovanie osobných údajov
-      pre analytické a marketingové účely. Pokračovaním súhlasíte so spracovaním.
-    </p>
-    <button id="cookie-accept-btn" style="
-      background: #3992e6;
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-    ">
-      Súhlasím
-    </button>
-  </div>
-</div>
     
   <header>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -105,7 +69,7 @@
       <div class="footer-logo" style="display: flex; flex-direction: column; row-gap: 0.5em; align-items: flex-start;">
         <img src="{% static 'media/logo.svg' %}" alt="Logo">
         <a href="tel:+421123456789" class="contact-block__info-item" aria-label="Telefón">+421 123 456 789</a>
-        <a href="mailto:info@firma.sk" class="contact-block__info-item" aria-label="Email"> info@firma.sk</a>
+        <a href="mailto:lfstrechy@gmail.com" class="contact-block__info-item" aria-label="Email"> lfstrechy@gmail.com</a>
       </div>
       <ul class="footer-links">
         <li><a href="{% url 'about' %}">O nás</a></li>
@@ -204,22 +168,6 @@
       allowTouchMove: false,
     });
   </script>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const popup = document.getElementById('cookie-popup');
-    const btn   = document.getElementById('cookie-accept-btn');
-    // ak už je uložený súhlas, skryjeme popup
-    if (localStorage.getItem('cookieConsent')) {
-      popup.style.display = 'none';
-      return;
-    }
-    // po kliknutí ulož súhlas a zavri popup
-    btn.addEventListener('click', () => {
-      localStorage.setItem('cookieConsent', 'true');
-      popup.style.display = 'none';
-    });
-  });
-</script>
 
   {% block scripts%}
   {% endblock %}
