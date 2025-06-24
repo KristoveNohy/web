@@ -17,8 +17,29 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps import GenericSitemap
+from core.models import Service
+
+from django.views.generic import TemplateView
+
+
+info_dict = {
+    'queryset': Service.objects.all(),
+    'date_field': 'created',  # alebo 'updated' – podľa tvojho modelu
+}
+
+from core.sitemaps import StaticViewSitemap
+from django.contrib.sitemaps.views import sitemap
+
+sitemaps = {
+    'static': StaticViewSitemap(),
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
 ]
 

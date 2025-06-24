@@ -4,13 +4,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="shortcut icon" href="{% static 'media/favicon.png' %}" type="image/x-icon">
   <title>LF Strechy | {% block title %}{% endblock %}</title>
+
+    <!-- SEO meta tagy -->
+  <meta name="description" content="{% block description %}LF Strechy – odborné realizácie striech na mieru.{% endblock %}">
+  <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+  <!-- Open Graph pre sociálne siete -->
+  <meta property="og:title" content="{% block og_title %}LF Strechy{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Realizujeme kvalitné strechy na Západe Slovenska.{% endblock %}">
+  <meta property="og:image" content="{% static 'media/preview.png' %}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+
   <!-- Swiper CSS -->
-   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="{% static 'css/swiper.css'%}">
   <link rel="stylesheet" href="{% static 'css/base.css'%}">
   {% block links %}
 
   {% endblock %}
+
+
+  {% block tracking %}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X"></script> <!-- zmenit id to UA-XXXXXX-X-->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-XXXXXXX-X');
+</script>
+{% endblock %}
 </head>
 <body>
     
@@ -89,7 +114,7 @@
   
   <!-- Scripts -->
   
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="{% static 'js/swiper.js' %}"></script>
   <script>
     // Mobilné menu
     const hamburger = document.getElementById('hamburger');

@@ -4,6 +4,7 @@ from .models import *
 from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
 from .forms import ContactForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -23,7 +24,7 @@ def realizations(request):
     return render(request, 'realizations.html', {
         'categories': Category.objects.all()
     })
-
+@login_required(login_url='/admin/core')
 def upload(request):
     if request.method == "POST":
         files = request.FILES.getlist('images[]')
@@ -82,7 +83,7 @@ def contact(request):
 
         else:
             print(form.errors)
-            return HttpResponse("chyba")
+            return render(request, 'fail.html')
         
 
     else:
