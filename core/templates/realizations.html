@@ -9,11 +9,11 @@
 
 {% block content %}
  <section id="realizacie" class="realizacie">
-    <h1 style="margin-bottom: 1em;">Naše realizácie striech po celom Slovensku</h1>
+    <h1 style="margin-bottom: 1em;" class="black">Naše realizácie striech po celom kraji</h1>
     {% for category in categories %}
     {% if category.images.all %}
     <div class="swiper-container-realizacie swiper"> 
-        <h3>
+        <h3 class="hero-text">
             {{ category }}
         </h3>
       <div class="swiper-wrapper">

@@ -18,7 +18,7 @@
 <form class="form" action="{% url 'contact' %}" method="post" enctype="multipart/form-data" onsubmit="wait()">
     {% csrf_token %}
     <p class="title">Kontaktný formulár </p>
-    <p class="message">napíšte nám a my vám pomôžeme vyriešiť váš problém </p>
+    <p class="message" style="color: lightgray;">napíšte nám a my vám pomôžeme vyriešiť váš problém </p>
         <div class="flex">
         <label>
             <input class="input" type="text" placeholder="" required name="fname" id="fname">
@@ -43,7 +43,7 @@
     <label>
         <input class="input" type="tel" placeholder="" required name="phone" id="phone" pattern="[0-9]{4} [0-9]{3} [0-9]{3}">
         <span>Telefónne číslo</span>
-        <small style="font-size: 0.75em; color: darkgrey;"><i>vo forme: 0901 234 567</i></small>
+        <small style="font-size: 0.75em; color: lightgray;"><i>vo forme: 0901 234 567</i></small>
     </label>
     <label>
         <select class="input" style="padding-block: 15px 15px;" name="category" id="category" required>
@@ -67,7 +67,7 @@
     <button class="submit" id="submitbtn">Odoslať</button>
 </form>
     <div class="alt-contact">
-      <p>Preferujete priamy kontakt? Zavolajte nám na <a href="tel:+421948337362">+421 948 337 362</a> alebo napíšte na <a href="https://www.facebook.com/profile.php?id=61573216465987">Facebook</a></p>
+      <p>Preferujete priamy kontakt? Zavolajte nám na <a href="tel:+421948337362">+421 948 337 362</a>, <a href="tel:+421919268998">+421 919 268 998</a> alebo napíšte na <a href="https://www.facebook.com/profile.php?id=61573216465987">Facebook</a></p>
     </div>
 </div>
 {% endblock %}
