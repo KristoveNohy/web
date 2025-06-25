@@ -77,11 +77,11 @@
       <div class="swiper-wrapper">
         {% for image in images %}
         {% if forloop.last %}
-          <div class="swiper-slide show-more"><img src="{{ image.images }}" alt="Realizácia 5">
+          <div class="swiper-slide show-more"><img src="{{ image.optimized.url }}" alt="Realizácia 5">
             <div class="show-more-overlay"><a href="#">Zobraziť viac</a></div>
           </div>
         {% else %}
-          <div class="swiper-slide"><img src="{{ image.images }}" alt="image.category"></div>                    
+          <div class="swiper-slide"><img src="{{ image.optimized.url }}" alt="image.category"></div>
         {% endif %}
         {% endfor %}
         
