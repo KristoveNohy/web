@@ -5,6 +5,10 @@ from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
 from .forms import ContactForm
 from django.contrib.auth.decorators import login_required
+from PIL import Image as PilImage
+from django.core.files.base import ContentFile
+import io
+import os
 
 
 # Create your views here.
@@ -30,7 +34,18 @@ def upload(request):
         files = request.FILES.getlist('images[]')
         print(files)
         for file in files:
-            Image.objects.create(category=Category.objects.get(id=request.POST["category"]), images=file)
+            img_obj = Image(category=Category.objects.get(id=request.POST["category"]))
+            pil_img = PilImage.open(file)
+            pil_img = pil_img.convert("RGB")
+            if pil_img.width > 1280:
+                ratio = 1280 / float(pil_img.width)
+                height = int(float(pil_img.height) * ratio)
+                pil_img = pil_img.resize((1280, height), PilImage.Resampling.LANCZOS)
+            buffer = io.BytesIO()
+            pil_img.save(buffer, format="WEBP")
+            filename = os.path.splitext(file.name)[0] + ".webp"
+            img_obj.images.save(filename, ContentFile(buffer.getvalue()), save=True)
+            img_obj.save()
         return redirect('realizations')
     return render(request, 'create.html', {
         'category': Category.objects.all()

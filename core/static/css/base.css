@@ -1,12 +1,14 @@
 /* Reset & moderné premenné */
 :root {
-  --bg-color: #0D0F12;
-  --menu-bg: #1A1D21;
+  /* --bg-color: #0D0F12; */
+  --bg-color: #e0e7e8;
+  --menu-bg: #8b949e;
   --accent: #ff0000;
   --accent-hover: #c70000;
   --swiper-theme-color: var(--accent);
   --text-color: #F1F1F1;
-  --subtext: #B0B0B0;
+  --text-color-black: #161515;
+  --subtext: #282828;
   --overlay: rgba(0, 0, 0, 0.6);
   --overlay-light: rgba(0, 0, 0, 0.4);
   --overlay-dark: rgba(0, 0, 0, 0.8);
@@ -73,6 +75,9 @@ body > footer {
   background: var(--menu-bg);
   padding: 2rem 1rem;
   color: var(--text-color);
+}
+.black {
+  color: var(--text-color-black);
 }
 .footer-container {
   max-width: 1200px;
@@ -199,7 +204,7 @@ body > footer {
     justify-content: center;
   }
 section {max-width: 1200px; margin-inline: auto;}
-section > h1 {margin-bottom: 0; line-height: 0.5em;}
+section > h1 {margin-bottom: 0; line-height: 1em;}
 .hero-text { font-size: 1.25rem; color: var(--subtext); margin-bottom: 1.5rem; }
 .realizacie { padding: 4rem 2rem; }
 .realizacie h2 { text-align: left; margin-bottom: 2rem; font-size: 2rem; }

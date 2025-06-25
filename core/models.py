@@ -17,7 +17,7 @@ class Category(models.Model):
 
 class Image(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="images")
-    images = models.ImageField(upload_to="static/uploads/")
+    images = models.ImageField(upload_to="uploads/")
 
 class Customer(models.Model):
     fname = models.CharField(max_length=64)
