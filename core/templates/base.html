@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="{% static 'media/favicon.png' %}">
   <link rel="shortcut icon" href="{% static 'media/favicon.png' %}" type="image/x-icon">
   <title>LF Strechy | {% block title %}{% endblock %}</title>
 
@@ -14,7 +15,7 @@
   <!-- Open Graph pre sociálne siete -->
   <meta property="og:title" content="{% block og_title %}LF Strechy{% endblock %}">
   <meta property="og:description" content="{% block og_description %}Realizujeme kvalitné strechy na Západe Slovenska.{% endblock %}">
-  <meta property="og:image" content="{% static 'media/preview.png' %}">
+  <meta property="og:image" content="{% static 'media/favicon.png' %}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ request.build_absolute_uri }}">
 

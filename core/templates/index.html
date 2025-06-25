@@ -81,7 +81,7 @@
             <div class="show-more-overlay"><a href="{% url 'realizations' %}">Zobraziť viac</a></div>
           </div>
         {% else %}
-          <div class="swiper-slide"><img src="{{ image.images }}" alt="image.category"></div>                    
+          <div class="swiper-slide"><img src="{{ image.images.url }}" alt="{{ image.category }}"></div>                    
         {% endif %}
         {% endfor %}
         
