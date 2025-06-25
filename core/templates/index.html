@@ -78,7 +78,7 @@
         {% for image in images %}
         {% if forloop.last %}
           <div class="swiper-slide show-more"><img src="{{ image.images }}" alt="Realizácia 5">
-            <div class="show-more-overlay"><a href="#">Zobraziť viac</a></div>
+            <div class="show-more-overlay"><a href="{% url 'realizations' %}">Zobraziť viac</a></div>
           </div>
         {% else %}
           <div class="swiper-slide"><img src="{{ image.images }}" alt="image.category"></div>                    
